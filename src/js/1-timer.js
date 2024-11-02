@@ -15,12 +15,10 @@ let timerId;
 let userSelectedDate = null;
 startButton.disabled = true;
 
-// Функція для форматування чисел з нулем на початку
 function addLeadingZero(value) {
     return String(value).padStart(2, "0");
 }
 
-// Ініціалізація flatpickr з потрібними налаштуваннями
 const options = {
     enableTime: true,
     time_24hr: true,
@@ -41,7 +39,6 @@ const options = {
 
 flatpickr(dateTimePicker, options);
 
-// Функція для конвертації мілісекунд в дні, години, хвилини і секунди
 function convertMs(ms) {
     const second = 1000;
     const minute = second * 60;
@@ -56,7 +53,6 @@ function convertMs(ms) {
     return { days, hours, minutes, seconds };
 }
 
-// Функція для оновлення інтерфейсу таймера
 function updateTimerInterface(timeObject) {
     daysSpan.textContent = addLeadingZero(timeObject.days);
     hoursSpan.textContent = addLeadingZero(timeObject.hours);
@@ -64,7 +60,6 @@ function updateTimerInterface(timeObject) {
     secondsSpan.textContent = addLeadingZero(timeObject.seconds);
 }
 
-// Функція для запуску таймера
 function startTimer() {
     const targetDate = userSelectedDate.getTime();
 
@@ -83,10 +78,8 @@ function startTimer() {
         updateTimerInterface(timeObject);
     }, 1000);
 
-    // Деактивація кнопки і поля вибору дати після запуску таймера
     startButton.disabled = true;
     dateTimePicker.disabled = true;
 }
 
-// Обробник події на кнопці Start
 startButton.addEventListener("click", startTimer);
